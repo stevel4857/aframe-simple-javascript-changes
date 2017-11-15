@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+    </head>
+    
+    <body>
+        <a-scene>
+            <a-assets>
+                <img id="texture" src="img/texture.jpg">
+            </a-assets>   
+			
+			 <a-box id="boxtwo" color="#000000" width="1" height="1" depth="1"
+                   position="7 1 0"
+                   rotation="0 0 0"
+                   scale="1 2.5 1">
+            </a-box>
+            
+            <a-box id="boxone" color="#FFFFFF" width="1" height="1" depth="1"
+                   position="0 1 0"
+                   rotation="0 0 0"
+                   scale="1 2.5 1"
+                   src="#texture">
+                <a-animation attribute="rotation" begin="click" repeat="indefinite" to="0 360 0"></a-animation>     
+            </a-box>
+            
+            <a-camera position="0 1.6 5" rotation="0 0 0" look-controls wasd-controls="fly: true">
+				<a-cursor color="#FF0000">
+            </a-camera>
+        </a-scene>
+        
+        <!-- interact using vanilla JavaScript when cursor is over the object -->
+        <!-- instead of using <a-event name="mouseenter" scale="4 1 6"></a-event> -->
+        <script>
+           	var box1 = document.querySelector( '#boxone' );
+			var box2 = document.querySelector( '#boxtwo' );
+			
+			<!--- This function causes the black box to change shape on mouseover of textured box --->
+							
+            box1.addEventListener( 'mouseenter', function ( )
+            {
+                box2.setAttribute( 'scale', { x: 4, y: 1, z: 6 });
+            } );
+			<!--- This function causes the black box to change shape back on mouseleave of textured box --->
+			    box1.addEventListener( 'mouseleave', function ( )
+            {
+				box2.setAttribute( 'scale', { x: 1, y: 2.5, z: 1 });
+            } );
+        </script>
+    </body>
+</html>

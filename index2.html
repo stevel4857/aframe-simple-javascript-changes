@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.7.0/aframe.min.js"></script>
+		
+ <script>
+  AFRAME.registerComponent('change-color-on-hover', {
+    schema: {
+      color: {default: 'red'}
+    },
+    init: function () {
+      var data = this.data;
+      var el = this.el;  // <a-box>
+      var defaultColor = el.getAttribute('material').color;
+      el.addEventListener('mouseenter', function () {
+        el.setAttribute('color', data.color);
+      });
+      el.addEventListener('mouseleave', function () {
+      el.setAttribute('color', defaultColor);
+      });
+    }
+  });
+</script>
+		
+    </head>
+    
+    <body>
+        <a-scene>
+  <a-box color="#000000" position="0 1 -4" change-color-on-hover="color: blue"></a-box>
+  <a-box color="#EF2D5E" position="2 1 -4" change-color-on-hover="color: red"></a-box>
+            <a-camera position="0 1.6 5" rotation="0 0 0" look-controls wasd-controls="fly: true">
+				<a-cursor color="#FF0000"></a-cursor>
+            </a-camera>
+        </a-scene>
+    </body>
+</html>
