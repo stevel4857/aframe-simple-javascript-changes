@@ -15,12 +15,12 @@
 <a-entity light="type: ambient; color: #BBB"></a-entity>
 <a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
 			
-		<a-box id="resorts" width="1" height="1" depth="1"
+		<a-box id="testobject" width="1" height="1" depth="1"
                    position="7 1 0"
                    rotation="0 0 0"
                    scale="1 2.5 1"
 		   src="#texture">
-<a-animation attribute="position" begin="shrink" to="0 0 0"  from="7 1 0" to="2 4 -8" easing="ease-in-out-elastic"></a-animation>
+<a-animation attribute="position" begin="moveme" to="0 0 0"  from="7 1 0" to="2 4 -8" easing="ease-in-out-elastic"></a-animation>
             </a-box>
           
             <a-camera position="0 1.6 5" rotation="0 0 0" look-controls wasd-controls="fly: true">
@@ -32,10 +32,10 @@
 
         <script>
 
-var resort = document.querySelector('#resorts');
+var resort = document.querySelector('#testobject');
 
 resort.addEventListener('click', function () {
-resort.emit('shrink');
+resort.emit('moveme');
 });
 
 	</script>
