@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    </head>
+    
+    <body>
+        <a-scene>
+            <a-assets>
+         <img id="texture" src="img/texture.jpg">
+		<img id="dest" src="img/texture.jpg">
+            </a-assets>   
+<a-light type="spot" color="#333" position="-20 0 0"></a-light>
+<a-light type="point" color="#AAA" position="0 5 0"></a-light>
+<a-entity light="type: ambient; color: #BBB"></a-entity>
+<a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+			
+		<a-box id="testobject" width="1" height="1" depth="1" position="3 1.5 -5.4" rotation="0 0 0" scale="1 2.5 1" src="#texture">
+<a-animation attribute="rotation" begin="startspin" end="stopspiner" dur="2000" fill="forwards" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+            </a-box>
+          
+            <a-camera position="0 1.6 5" rotation="0 0 0" look-controls wasd-controls="fly: true">
+				<a-cursor color="#FF0000"></a-cursor>
+            </a-camera>
+				
+				<!--- Button Start --->
+<a-entity id="buttonstart">
+	<a-box color="#9d8752" width="1.5" height="0.4" depth="0.01" position="0 3 0" rotation="0 0 0" visible="true" material="opacity:0.5">
+			<a-text position="0 0.02 0.2" color="#000" align="center" value="START" width="3.5"></a-text>
+	</a-box>
+</a-entity>
+				
+<a-entity id="buttonstop">
+	<a-box color="#9d8752" width="1.5" height="0.4" depth="0.01" position="0 2 0" rotation="0 0 0" visible="true" material="opacity:0.5">
+			<a-text position="0 0.04 0.2" color="#000" align="center" value="STOP" width="3.5"></a-text>
+	</a-box>
+</a-entity>
+
+        </a-scene>
+
+     <script>
+var resort = document.querySelector('#testobject');
+var startbuttons = document.querySelector('#buttonstart');
+var stopbutton = document.querySelector('#buttonstop');
+startbuttons.addEventListener('click', function () {resort.emit('startspin');});			
+stopbutton.addEventListener('click', function () {resort.emit('stopspiner');});  
+	</script>
+		
+		<!--- works by creating start and end within the Rotation property. Then, creating the function above. First declare a variable for the function as var. var resort is short coe in the function for testobject which is the id of the entity you want to rotate. The rotate property has to be inside of the entity or object you want to command.  --->
+
+    </body>
+</html>
