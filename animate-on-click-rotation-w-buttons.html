@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://aframe.io/releases/0.7.1/aframe.min.js"></script>
+    </head>
+    
+    <body>
+        <a-scene>
+            <a-assets>
+                <img id="texture" src="img/texture.jpg">
+		<img id="dest" src="img/texture.jpg">
+            </a-assets>   
+<a-light type="spot" color="#333" position="-20 0 0"></a-light>
+<a-light type="point" color="#AAA" position="0 5 0"></a-light>
+<a-entity light="type: ambient; color: #BBB"></a-entity>
+<a-entity light="type: directional; color: #FFF; intensity: 0.6" position="-0.5 1 1"></a-entity>
+			
+		<a-box id="testobject" width="1" height="1" depth="1"
+                   position="7 1 0"
+                   rotation="0 0 0"
+                   scale="1 2.5 1"
+		   src="#texture">
+<a-animation attribute="rotation" begin="startspin" dur="2000" fill="forwards" to="0 360 0" repeat="indefinite" easing="linear"></a-animation>
+            </a-box>
+          
+            <a-camera position="0 1.6 5" rotation="0 0 0" look-controls wasd-controls="fly: true">
+				<a-cursor color="#FF0000">
+            </a-camera>
+				
+				<!--- Button Start --->
+<a-entity id="buttonstart">
+	<a-box color="#9d8752" width="1" height="0.4" depth="0.01" metalness="0.75" position="0 2 0" rotation="0 0 0" visible="true" material="opacity:0.5">
+			<a-text position="0 0.04 0.2" color="#000" align="center" value="Start" width="3.5"></a-text>
+	</a-box>
+</a-entity>
+
+        </a-scene>
+        
+
+        <script>
+
+var resort = document.querySelector('#testobject');
+var startbutton = document.querySelector('#buttonstart');
+startbutton.addEventListener('click', function () {
+resort.emit('startspin');
+});
+
+	</script>
+
+    </body>
+</html>
